@@ -21,12 +21,8 @@ export const ButtonContainer = styled.button<IButtonS>`
         transition: 0.3s;
     }
 
-    ${({variant}) => variant === 'secondary' && css`
-        color: #212121;
-        background-color: #D5D6E0;
-
-        &:hover{
-            background-color: #9FA0A7;
-        }
-    `}
+    &:disabled{
+        background-color: #4A4E66;
+        cursor: default;
+    }
 `

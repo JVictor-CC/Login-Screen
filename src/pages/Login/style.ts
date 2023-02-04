@@ -1,12 +1,19 @@
 import styled from "styled-components";
+import image from "../../assets/bg-m.jpg"
+
+export const Screen = styled.div`
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+`
 
 export const LoginContainer = styled.div`
-    max-width: 600px;
-    height: 100vh;
+    max-width: 550px;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: solid;
+    border: solid 4px #ddd;
 `
 
 export const LoginInfo = styled.div`
@@ -39,18 +46,21 @@ export const LoginInfo = styled.div`
         text-align: center;
         margin: 25px 0 50px;
     }
-
-    hr{
-        color: #D5D6E0;
-        width: 100%;
-        margin: 10px 0 20px;
-    }
 `
 
-export const LoginImageContainer = styled.div`
+export const Gradient = styled.p`
+    background: -webkit-linear-gradient(270deg, #AA00B3, #6B0071, #000);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline;
+`
+
+export const LoginImage = styled.div`
+    background-image: url(${image});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
     width: 100%;
-`
-
-export const LoginImage = styled.img`
-
 `  

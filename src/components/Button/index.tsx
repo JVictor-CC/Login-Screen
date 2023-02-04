@@ -1,15 +1,15 @@
-import React from 'react'
+import React, { ButtonHTMLAttributes } from 'react'
 import { ButtonContainer } from './style'
 
-interface IButton {
+interface IButton extends ButtonHTMLAttributes<HTMLButtonElement>{
     title: string;
-    variant?: string
+    validForm?: boolean
 }
 
-const Button = ({title, variant} :IButton) => {
-  return (
-    <ButtonContainer variant={variant}>{title}</ButtonContainer>
-  )
+const Button = ({title, validForm} :IButton) => {
+  return (<>
+    <ButtonContainer disabled={!validForm}>{title}</ButtonContainer>
+  </>)
 }
 
 export default Button
