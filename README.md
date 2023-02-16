@@ -9,7 +9,7 @@ A responsive login screen with validation, built in React.
 
 ## Links
 
-Watch it in action [here](login-screen-lake.vercel.app)
+Watch it in action [here](https://login-screen-g3bnt9gkw-jvictor-cc.vercel.app/)
 
 ## Features
 
