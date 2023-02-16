@@ -5,6 +5,10 @@ export const Screen = styled.div`
     display: flex;
     width: 100vw;
     height: 100vh;
+    
+    @media screen and (max-width: 700px){
+        justify-content: center;
+    }
 `
 
 export const LoginContainer = styled.div`
@@ -13,7 +17,7 @@ export const LoginContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    border: solid 4px #ddd;
+ 
 `
 
 export const LoginInfo = styled.div`
@@ -63,4 +67,8 @@ export const LoginImage = styled.div`
     background-position: center;
     height: 100vh;
     width: 100%;
+
+    @media screen and (max-width: 700px){
+        display: none;
+    } 
 `  
