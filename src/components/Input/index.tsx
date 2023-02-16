@@ -19,10 +19,9 @@ const Input = ({control, label, placeHolder, leftIcon, errorMessage} : IInput) =
         control={control}
         name={label}
         render={({field}) => <input id={label} type={label} placeholder={placeHolder} {...field}/>}
-      />
-      
+      /> 
     </InputContainer>
-    {errorMessage ? <DisplayError>{errorMessage}</DisplayError> : null }
+    {errorMessage ? <DisplayError variant=''><p>{errorMessage}</p></DisplayError> : <DisplayError variant='nodisplay'></DisplayError>  }
   </>)
 }
 

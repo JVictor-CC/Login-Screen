@@ -1,4 +1,8 @@
-import styled from "styled-components"
+import styled, {css} from "styled-components"
+
+interface IErrorMessage{
+    variant: string
+}
 
 export const InputLabel = styled.label`
     display: block;
@@ -37,7 +41,23 @@ export const IconContainer = styled.div`
     border: solid 3px #D5D6E0;
 `
 
-export const DisplayError = styled.p`
-    color: red;
-    font-size: 14px;
+export const DisplayError = styled.div<IErrorMessage>`
+    position: relative;
+    height: 30px;
+    top: -9.5px;
+    background-color: #3B2F30;
+    border-radius: 0 0 5px 5px;
+    color: #fff;
+    transition: 0.5s;
+
+    ${({variant}) => variant === 'nodisplay' && css`
+        height: 0px;
+        overflow: hidden;
+        padding: 0;
+    `}
+
+    p{
+        font-size: 14px;
+        transform: translate(4%, 20%);
+    }
 `
