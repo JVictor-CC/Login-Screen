@@ -7,9 +7,9 @@ interface IButton extends ButtonHTMLAttributes<HTMLButtonElement>{
 }
 
 const Button = ({title, validForm} :IButton) => {
-  return (<>
+  return (
     <ButtonContainer disabled={!validForm}>{title}</ButtonContainer>
-  </>)
+  )
 }
 
 export default Button

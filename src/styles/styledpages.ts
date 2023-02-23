@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import image from "../../assets/bg-m.jpg"
+import image from "../assets/bg-m.jpg"
 
 export const Screen = styled.div`
     display: flex;
@@ -31,7 +31,7 @@ export const LoginInfo = styled.div`
     }
 
     p{
-        margin: 10px 0 50px;
+        margin: 10px 0 25px;
         line-height: 22px;
     }
     
@@ -48,8 +48,13 @@ export const LoginInfo = styled.div`
     span{
         display: block;
         text-align: center;
-        margin: 25px 0 50px;
+        margin: 25px 0 25px;
     }
+`
+
+export const Center = styled.div`
+    text-align: center;
+    margin: 25px 0 25px;
 `
 
 export const Gradient = styled.p`

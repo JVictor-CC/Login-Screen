@@ -39,6 +39,7 @@ export const IconContainer = styled.div`
     
     background-color: #fff;
     border: solid 3px #D5D6E0;
+    border-radius: 6px;
 `
 
 export const DisplayError = styled.div<IErrorMessage>`
