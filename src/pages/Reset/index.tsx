@@ -10,7 +10,11 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 
+import { supabase } from '../../services/supabase'
+import { toast } from "react-toastify";
+
 import { LoginInfo, LoginContainer, LoginImage, Screen, Gradient, Center} from "../../styles/styledpages";
+import { useAuth } from "../../context/userAuth";
 
 
 interface ILoginForm {
@@ -29,6 +33,7 @@ const schema = yup.object({
 function Reset() {
 
   const navigate = useNavigate()
+  const { updateUser } = useAuth()
 
   const { control, formState: {errors, isValid}, handleSubmit} = useForm<ILoginForm>({
     resolver: yupResolver(schema),
@@ -37,9 +42,23 @@ function Reset() {
     reValidateMode: 'onChange'
   })
 
-  const onSubmitReset = (data: any) => {
-    console.log('data:', data)
-    navigate('/')
+  const handleReset = async (inputData: any) => {
+    try {
+      const { data: { user } } = await supabase.auth.getUser()
+      const response = await supabase.auth.admin.updateUserById(
+        user.id,
+        { password: inputData.password}
+      )
+      if(response.error){
+        toast.error( response.error.message, {position: toast.POSITION.TOP_CENTER}) 
+      }else{
+        updateUser()
+        toast.success('Password successfully changed', {position: toast.POSITION.TOP_CENTER})
+        navigate('/profile')
+      }
+    }catch(error: any){
+      alert(error.message)
+    }
   }
 
   return (
@@ -49,7 +68,7 @@ function Reset() {
           <Center><h1>Password <Gradient>Reset</Gradient></h1></Center>
           <Center><img src={resetPassImage} width={320} alt="" /></Center>
           <Center><p>For the safety of your account, please use a strong password.</p></Center>
-          <form onSubmit={handleSubmit(onSubmitReset)}>
+          <form onSubmit={handleSubmit(handleReset)}>
             <Input leftIcon={<MdPassword/>} label={'New password'} type={'password'} placeHolder={'type your password'} control={control} controllerName={'password'} errorMessage={errors.password?.message}/>
             <Input leftIcon={<MdPassword />} label={'Confirm new password'} type={'password'} placeHolder={'confirm your password'} control={control} controllerName={'confirmPassword'} errorMessage={errors.confirmPassword?.message}/>
             <Button validForm={isValid} title={'Reset Password'} type="submit"/>

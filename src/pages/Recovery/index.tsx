@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import { MdEmail} from 'react-icons/md'
@@ -9,6 +8,11 @@ import forgetPassImage from '../../assets/forgetpassword.jpg'
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
+
+import { supabase } from '../../services/supabase'
+import { toast } from "react-toastify";
+import { useAuth } from '../../context/userAuth';
+import { useNavigate } from 'react-router-dom';
 
 import { LoginInfo, LoginContainer, LoginImage, Screen, Gradient, Center} from "../../styles/styledpages";
 
@@ -24,6 +28,8 @@ const schema = yup.object({
 
 function Recovery() {
   const navigate = useNavigate()
+  const { setRecoveryEmail } = useAuth()
+
   const { control, handleSubmit, formState: {errors, isValid},} = useForm<ILoginForm>({
     resolver: yupResolver(schema),
     defaultValues: { email: ''},
@@ -31,9 +37,20 @@ function Recovery() {
     reValidateMode: 'onChange'
   })
 
-  const onSubmitRecovery = (data:any) => {
-    console.log(data)
-    navigate('/recoveryOTP')
+  const handleRecovery = async (data: any) => {
+    try{
+      let response = await supabase.auth.resetPasswordForEmail(data.email)
+      if(response.error){
+        toast.error( response.error.message, {position: toast.POSITION.TOP_CENTER}) 
+      }else{
+        setRecoveryEmail(data.email)
+        toast.success('A code has been sent to your email', {position: toast.POSITION.TOP_CENTER}) 
+        navigate('/recoveryOTP')
+      }
+    }
+    catch(error: any){
+      alert(error.message)
+    }
   }
 
   return (
@@ -43,7 +60,8 @@ function Recovery() {
           <Center><h1>Password <Gradient>Recovery</Gradient></h1></Center>
           <Center><img src={forgetPassImage} width={250} alt="" /></Center>
           <Center><p>Enter Your Registered Email</p></Center>
-          <form onSubmit={handleSubmit(onSubmitRecovery)}>
+          
+          <form onSubmit={handleSubmit(handleRecovery)}>
             <Input leftIcon={<MdEmail />} label={'email'} type={'email'} placeHolder={'type your email'} control={control} controllerName={'email'} errorMessage={errors.email?.message}/>
             <Button validForm={isValid} title={'Send OTP'} type="submit"/>
           </form>

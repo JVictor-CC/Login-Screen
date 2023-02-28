@@ -4,11 +4,13 @@ import { ButtonContainer } from './style'
 interface IButton extends ButtonHTMLAttributes<HTMLButtonElement>{
     title: string;
     validForm?: boolean
+    variant?: string
+    onClick?: () => void
 }
 
-const Button = ({title, validForm} :IButton) => {
+const Button = ({title, validForm = true, variant, onClick} :IButton) => {
   return (
-    <ButtonContainer disabled={!validForm}>{title}</ButtonContainer>
+    <ButtonContainer onClick={onClick} variant={variant} disabled={!validForm}>{title}</ButtonContainer>
   )
 }
 

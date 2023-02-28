@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 
 interface IButtonS {
     variant?: string
-  }
+}
 
 export const ButtonContainer = styled.button<IButtonS>`
     background-color: #212121;
@@ -25,4 +25,15 @@ export const ButtonContainer = styled.button<IButtonS>`
         background-color: #4A4E66;
         cursor: default;
     }
+
+    ${({variant}) => variant === 'logout' && css`
+        width: 50%;
+        margin: 15px;
+        border-radius: 5px;
+        background-color: #C71D0E;
+
+        &:hover{
+            background-color: #7A1209;
+        }
+    `}
 `
