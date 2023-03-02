@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import image from "../assets/bg-m.jpg"
+import image from "../assets/bg-opt.jpg"
 
 export const Screen = styled.div`
     display: flex;
@@ -17,7 +17,6 @@ export const LoginContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
- 
 `
 
 export const LoginInfo = styled.div`

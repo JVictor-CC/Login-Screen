@@ -4,7 +4,7 @@ import Button from "../../components/Button";
 import Input from "../../components/Input";
 import { MdPassword } from 'react-icons/md'
 
-import resetPassImage from '../../assets/resetPass.jpg'
+import resetPassImage from '../../assets/resetPass-opt.jpg'
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup'

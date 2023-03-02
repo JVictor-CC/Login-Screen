@@ -3,7 +3,7 @@ import Button from "../../components/Button";
 import Input from "../../components/Input";
 import { MdEmail} from 'react-icons/md'
 
-import forgetPassImage from '../../assets/forgetpassword.jpg'
+import forgetPassImage from '../../assets/forgetpassword-opt.jpg'
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup'

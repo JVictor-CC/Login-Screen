@@ -4,7 +4,7 @@ import Button from "../../components/Button";
 import Input from "../../components/Input";
 import { MdPassword } from 'react-icons/md'
 
-import OTPImage from '../../assets/OTP2.jpg'
+import OTPImage from '../../assets/OTP-opt.jpg'
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup'
